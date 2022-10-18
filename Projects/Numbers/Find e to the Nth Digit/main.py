@@ -1,4 +1,4 @@
-# NUMBERS | Find PI to the Nth Digit
+# NUMBERS | Find e to the Nth Digit
 import math
 
 isRunning = True
