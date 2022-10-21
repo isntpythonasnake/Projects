@@ -4,8 +4,7 @@ sg.theme('Reddit')
 layout = [[sg.Text('Convert Binary to Decimal and back!')],
           [sg.Radio('Binary', key='radio1', group_id=1), sg.Radio('Decimal', key='radio2', group_id=1)],
           [sg.Text('Input: '), sg.Input('', key='itext')],
-          [sg.Button('CONVERT', key='Button'), sg.Text('The answer will display here!', key='ans')],
-          ]
+          [sg.Button('CONVERT', key='Button'), sg.Text('The answer will display here!', key='ans')]]
 
 window = sg.Window('Converter', layout)
 while True:
