@@ -1,23 +1,22 @@
-# NUMBERS | Find e to the Nth Digit
+# NUMBERS | Find PI to the Nth Digit
+import PySimpleGUI as sg
 import math
 
-isRunning = True
+sg.theme('Reddit')
+layout = [[sg.Text('Find e to the Nth Digit')],
+          [sg.Text('Input Nth Digit: '), sg.Input('', key='itext')],
+          [sg.Button('SUBMIT', key='Button'), sg.Text('The answer will display here!', key='ans')]]
 
-while isRunning:
-    try:
-        n = int(input("Decimal places: "))
-    except ValueError:
-        print("Number cannot be empty and must be an integer.")
+window = sg.Window('e to the Nth Digit', layout)
+while True:
+    event, values = window.read()
+    inputText = values['itext']
+    if event == sg.WIN_CLOSED:
+        break
+    elif event == 'Button' and not inputText.isdigit() or inputText == '' or int(inputText) <= 0 or int(inputText) >= 12:
+        window["ans"].update(value=str("Please enter an integer larger than 0 and smaller than 12!"))
     else:
         e = math.e
-
-        if n <= 0:
-            print("Enter a positive number.")
-            int(input("Decimal places: "))
-        elif n >= 12:
-            print("Number must be smaller than 12.")
-            int(input("Decimal places: "))
-        else:
-            output = round(e, n)
-            print("Rounded e: " + str(output))
-            isRunning = False
+        result = round(e, int(inputText))
+        window["ans"].update(value=str("Rounded e: " + str(result)))
+window.close()

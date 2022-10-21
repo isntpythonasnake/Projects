@@ -1,23 +1,22 @@
 # NUMBERS | Find PI to the Nth Digit
+import PySimpleGUI as sg
 import math
 
-isRunning = True
+sg.theme('Reddit')
+layout = [[sg.Text('Find Pi to the Nth Digit')],
+          [sg.Text('Input Nth Digit: '), sg.Input('', key='itext')],
+          [sg.Button('SUBMIT', key='Button'), sg.Text('The answer will display here!', key='ans')]]
 
-while isRunning:
-    try:
-        n = int(input("Decimal places: "))
-    except ValueError:
-        print("Number cannot be empty and must be an integer.")
+window = sg.Window('Pi to the Nth Digit', layout)
+while True:
+    event, values = window.read()
+    inputText = values['itext']
+    if event == sg.WIN_CLOSED:
+        break
+    elif event == 'Button' and not inputText.isdigit() or inputText == '' or int(inputText) <= 0 or int(inputText) >= 12:
+        window["ans"].update(value=str("Please enter an integer larger than 0 and smaller than 12!"))
     else:
         pi = math.pi
-
-        if n <= 0:
-            print("Enter a positive number.")
-            int(input("Decimal places: "))
-        elif n >= 12:
-            print("Number must be smaller than 12.")
-            int(input("Decimal places: "))
-        else:
-            output = round(pi, n)
-            print("Rounded Pi: " + str(output))
-            isRunning = False
+        result = round(pi, int(inputText))
+        window["ans"].update(value=str("Rounded Pi: " + str(result)))
+window.close()
