@@ -7,7 +7,7 @@ layout = [[sg.Text('Find Pi to the Nth Digit')],
           [sg.Text('Input Nth Digit: '), sg.Input('', key='itext')],
           [sg.Button('SUBMIT', key='Button'), sg.Text('The answer will display here!', key='ans')]]
 
-window = sg.Window('Pi to the Nth Digit', layout)
+window = sg.Window('e to the Nth Digit', layout)
 while True:
     event, values = window.read()
     inputText = values['itext']
